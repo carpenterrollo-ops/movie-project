@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}404 – Seite nicht gefunden{% endblock %}
+
+{% block content %}
+<section class="error-section">
+    <div class="card error-card">
+        <h1>404</h1>
+        <h2>Hoppla! Seite nicht gefunden</h2>
+        <p>Die von dir gesuchte Seite existiert leider nicht oder wurde verschoben.</p>
+        <a href="{{ url_for('index') }}" class="btn-primary">Zurück zur Startseite</a>
+    </div>
+</section>
+{% endblock %}

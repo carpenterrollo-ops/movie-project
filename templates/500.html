@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}500 – Serverfehler{% endblock %}
+
+{% block content %}
+<section class="error-section">
+    <div class="card error-card">
+        <h1>500</h1>
+        <h2>Ein unerwarteter Fehler ist aufgetreten</h2>
+        <p>Auf dem Server ist etwas schiefgelaufen. Wir arbeiten daran!</p>
+        <a href="{{ url_for('index') }}" class="btn-primary">Zurück zur Startseite</a>
+    </div>
+</section>
+{% endblock %}

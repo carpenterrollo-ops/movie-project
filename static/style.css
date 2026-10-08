@@ -338,3 +338,35 @@ footer {
     color: #f8b4b4;
     border: 1px solid #8c2b2b;
 }
+
+/* --- Error Pages --- */
+.error-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+}
+
+.error-card {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    padding: 3rem 2rem;
+}
+
+.error-card h1 {
+    font-size: 5rem;
+    color: var(--accent-red);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.error-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.error-card p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}

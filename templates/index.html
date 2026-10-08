@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Nutzerübersicht{% endblock %}
+
+{% block content %}
+<section class="user-section">
+    <h1>Nutzerübersicht</h1>
+
+     <ul class="user-list">
+        {% for user in users %}
+        <li class="user-entry">
+            <a href="{{ url_for('get_user_movies', user_id=user.user_id) }}" class="btn">
+                👤 {{ user.name }}
+            </a>
+        </li>
+        {% else %}
+        <li>Noch keine Nutzer vorhanden.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="card">
+        <h2>Neuen Nutzer hinzufügen</h2>
+        <form action="{{ url_for('create_user') }}" method="post" class="user-form">
+            <input type="text" name="name" placeholder="Nutzername eingeben" required>
+            <button type="submit" class="btn-primary">Nutzer anlegen</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

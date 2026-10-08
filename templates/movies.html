@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Lieblingsfilme von {{ user.name }}{% endblock %}
+
+{% block content %}
+<section class="movies-section">
+    <div class="header-bar">
+        <h1>🎬 Lieblingsfilme von {{ user.name }}</h1>
+        <a href="{{ url_for('index') }}" class="btn-secondary">← Zurück zur Nutzerübersicht</a>
+    </div>
+
+    <!-- Formular zum Hinzufügen eines neuen Films (OMDb Suche) -->
+    <div class="card add-movie-card">
+        <h2>Neuen Film zu Favoriten hinzufügen</h2>
+        <form action="{{ url_for('add_user_movie', user_id=user.user_id) }}" method="post" class="inline-form">
+            <input type="text" name="title" placeholder="Filmtitel eingeben (z.B. Inception)" required>
+            <button type="submit" class="btn-primary">Film suchen & hinzufügen</button>
+        </form>
+    </div>
+
+    <!-- Raster für die Filmliste -->
+    <h2>Favoriten</h2>
+    <div class="movie-grid">
+        {% for movie in movies %}
+        <div class="movie-card">
+            {% if movie.poster_url and movie.poster_url != 'N/A' %}
+                <img src="{{ movie.poster_url }}" alt="Poster von {{ movie.title }}" class="movie-poster">
+            {% else %}
+                <div class="no-poster">Kein Poster vorhanden</div>
+            {% endif %}
+
+            <div class="movie-info">
+                <h3>{{ movie.title }}</h3>
+                <p><strong>Jahr:</strong> {{ movie.year }}</p>
+                <p><strong>Regie:</strong> {{ movie.director }}</p>
+
+                <!-- Formular: Titel aktualisieren -->
+                <form action="{{ url_for('update_user_movie', user_id=user.user_id, movie_id=movie.movie_id) }}" method="post" class="update-form">
+                    <input type="text" name="new_title" value="{{ movie.title }}" required>
+                    <button type="submit" class="btn-small">Titel ändern</button>
+                </form>
+
+                <!-- Formular: Film aus Favoriten entfernen -->
+                <form action="{{ url_for('delete_user_movie', user_id=user.user_id, movie_id=movie.movie_id) }}" method="post" class="delete-form">
+                    <button type="submit" class="btn-danger" onclick="return confirm('Möchtest du diesen Film wirklich aus den Favoriten entfernen?');">
+                        Löschen
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <p class="empty-message">Dieser Nutzer hat noch keine Lieblingsfilme hinzugefügt.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

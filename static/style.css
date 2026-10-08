@@ -1,0 +1,340 @@
+/* --- CSS Variablen für einfaches Styling --- */
+:root {
+    --bg-dark: #141414;
+    --card-bg: #1f1f1f;
+    --card-bg-hover: #2a2a2a;
+    --accent-red: #e50914;
+    --accent-red-hover: #f40612;
+    --text-main: #ffffff;
+    --text-muted: #aaaaaa;
+    --border-color: #333333;
+    --radius: 8px;
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Globale Einstellungen & Reset --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* --- Header & Navigation --- */
+.navbar {
+    background-color: var(--card-bg);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .logo a {
+    color: var(--accent-red);
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navbar nav a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.navbar nav a:hover {
+    color: var(--accent-red);
+}
+
+/* --- Hauptcontainer --- */
+.container {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* --- Karten / Standard-Boxen --- */
+.card, .add-movie-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.card h2, .add-movie-card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+/* --- Nutzer-Übersicht (index.html) --- */
+.user-section h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.user-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.user-entry a {
+    display: block;
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    text-decoration: none;
+    padding: 1rem 1.2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.user-entry a:hover {
+    background-color: var(--card-bg-hover);
+    border-color: var(--accent-red);
+    transform: translateY(-3px);
+}
+
+/* --- Formulare & Inputs --- */
+.user-form, .inline-form {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    background-color: #2a2a2a;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+input[type="text"]:focus {
+    border-color: var(--accent-red);
+}
+
+/* --- Buttons --- */
+.btn-primary, .btn-secondary, .btn-small, .btn-danger {
+    padding: 0.75rem 1.2rem;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--accent-red);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-red-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: #333333;
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    background-color: #444444;
+}
+
+.btn-small {
+    background-color: #2a2a2a;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+.btn-small:hover {
+    background-color: #3a3a3a;
+    border-color: #555555;
+}
+
+.btn-danger {
+    background-color: #b9090b;
+    color: white;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.btn-danger:hover {
+    background-color: #e50914;
+}
+
+/* --- Movies Page Layout (movies.html) --- */
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.header-bar h1 {
+    font-size: 1.8rem;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.movie-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    border-color: #555555;
+}
+
+.movie-poster {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    background-color: #111111;
+}
+
+.no-poster {
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #222222;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.movie-info {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+
+.movie-info h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+    margin-bottom: 0.2rem;
+}
+
+.movie-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.update-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.update-form input[type="text"] {
+    min-width: unset;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+}
+
+.empty-message {
+    color: var(--text-muted);
+    font-style: italic;
+    grid-column: 1 / -1;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--card-bg);
+    text-align: center;
+    padding: 1.2rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+
+/* --- Flash Messages --- */
+.flash-messages {
+    max-width: 1200px;
+    margin: 1rem auto 0 auto;
+    padding: 0 1.5rem;
+}
+
+.flash-alert {
+    padding: 0.8rem 1.2rem;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.flash-success {
+    background-color: #1e4620;
+    color: #a3e2a7;
+    border: 1px solid #2e6b32;
+}
+
+.flash-error {
+    background-color: #5c1d1d;
+    color: #f8b4b4;
+    border: 1px solid #8c2b2b;
+}

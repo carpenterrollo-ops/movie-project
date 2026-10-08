@@ -1,5 +1,7 @@
+"""
+Database models
+"""
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 db = SQLAlchemy()
@@ -7,15 +9,31 @@ db = SQLAlchemy()
 user_favorites = db.Table(
     'user_favorites',
     db.metadata,
-    db.Column('user_id', db.Integer, db.ForeignKey('users.user_id', ondelete='CASCADE'), primary_key=True),
-    db.Column('movie_id', db.Integer, db.ForeignKey('movies.movie_id', ondelete='CASCADE'), primary_key=True)
+    db.Column(
+        'user_id',
+        db.Integer,
+        db.ForeignKey(
+            'users.user_id',
+            ondelete='CASCADE'),
+        primary_key=True),
+    db.Column(
+        'movie_id',
+        db.Integer,
+        db.ForeignKey(
+            'movies.movie_id',
+            ondelete='CASCADE'),
+        primary_key=True)
 )
 
 
-class User(db.Model):
+class User(db.Model):  # pylint: disable=too-few-public-methods
+    """
+    user data model
+    """
     __tablename__ = 'users'
 
-    user_id: Mapped[int] = mapped_column(db.Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(
+        db.Integer, primary_key=True, autoincrement=True)
     name: Mapped[str]
 
     favorites: Mapped[list["Movie"]] = relationship(
@@ -25,10 +43,14 @@ class User(db.Model):
     )
 
 
-class Movie(db.Model):
+class Movie(db.Model):  # pylint: disable=too-few-public-methods
+    """
+    movie data model
+    """
     __tablename__ = 'movies'
 
-    movie_id: Mapped[int] = mapped_column(db.Integer, primary_key=True, autoincrement=True)
+    movie_id: Mapped[int] = mapped_column(
+        db.Integer, primary_key=True, autoincrement=True)
     title: Mapped[str]
     director: Mapped[str]
     year: Mapped[int] = mapped_column(db.Integer)

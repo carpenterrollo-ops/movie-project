@@ -1,9 +1,19 @@
+"""
+Datahandler for user and movie table
+"""
 from sqlalchemy.exc import SQLAlchemyError
 from models import db, User, Movie
 
+
 class DataManager:
+    """
+    Datahandler for user and movie table
+    """
 
     def create_user(self, name: str) -> User | None:
+        """
+        creates a new user
+        """
         try:
             new_user = User(name=name)
             db.session.add(new_user)
@@ -15,6 +25,9 @@ class DataManager:
             return None
 
     def get_users(self) -> list[User]:
+        """
+        returns all users
+        """
         try:
             return db.session.query(User).all()
         except SQLAlchemyError as e:
@@ -22,6 +35,9 @@ class DataManager:
             return []
 
     def get_user(self, user_id: int) -> User | None:
+        """
+        returns user
+        """
         try:
             return db.session.get(User, user_id)
         except SQLAlchemyError as e:
@@ -29,12 +45,18 @@ class DataManager:
             return None
 
     def get_movies(self, user_id: int) -> list[Movie]:
+        """
+        get movies for particular user
+        """
         user = self.get_user(user_id)
         if user:
             return user.favorites
         return []
 
     def add_movie(self, user_id: int, movie: Movie) -> Movie | None:
+        """
+        adds a new movie for particular user
+        """
         try:
             user = self.get_user(user_id)
             if not user:
@@ -62,7 +84,11 @@ class DataManager:
             print(f"Fehler beim Hinzufügen des Films: {e}")
             return None
 
-    def update_user_movie_title(self, user_id: int, movie_id: int, new_title: str) -> bool:
+    def update_user_movie_title(
+            self, user_id: int, movie_id: int, new_title: str) -> bool:
+        """
+        updates user movie
+        """
         try:
             user = self.get_user(user_id)
             old_movie = db.session.get(Movie, movie_id)
@@ -87,6 +113,9 @@ class DataManager:
             return False
 
     def delete_movie(self, user_id: int, movie_id: int) -> bool:
+        """
+        deletes movie for particular user
+        """
         try:
             user = self.get_user(user_id)
             movie = db.session.get(Movie, movie_id)

@@ -13,9 +13,6 @@ app.secret_key = "super_secret_key_für_flash_messages"
 # .env-Datei laden
 load_dotenv()
 
-app = Flask(__name__)
-
-
 API_KEY = os.getenv("OMDB_API_KEY")
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -200,8 +197,8 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     """
-     500 error handler
-     """
+    500 error handler
+    """
     print(e)
     return render_template('500.html'), 500
 
@@ -209,4 +206,4 @@ def internal_server_error(e):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5002)
